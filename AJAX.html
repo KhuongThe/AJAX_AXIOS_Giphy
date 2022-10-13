@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+        //Tạo request GET => tạo yêu cầu nhận dữ liệu từ server có User/ID và nhận dữ liệu trả về là 1 đối tượng 
+        // Promise và xử lý dữ liệu trả về theo 2 phương thức bất đồng bộ then() và catch()
+        axios.get('/user?ID=12345')
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        //Tạo request POST => tạo yêu cầu gửi dữ liệu là 1 đối tượng lên API và nhận về là 1 đối tượng 
+        // Promise và xử lý dữ liệu trả về theo 2 phương thức bất đồng bộ then() và catch()
+        axios.post('/users', {
+            firstName: 'First name',
+            lastName: 'Last name'
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Sử dụng Callback function xử lý bất đồng bộ trong Javascript
+        //Khai báo hàm xử lý chính
+        function greet(name, callback) {
+            console.log('Hello world');
+            callback(name);
+        }
+        //Khai báo hàm Callback
+        function sayName(name) {
+            console.log('Hello' + ' ' + name);
+        }
+        // calling the function
+        setTimeout(greet, 2000, 'John', sayName);
+        
+        //Kết quả in ra => đã được xử lý đồng bộ
+        //Hello World
+        //Hello John
+        
+    </script>
+</body>
+
+</html>

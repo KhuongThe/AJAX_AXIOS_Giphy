@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        //Khởi tạo đối tượng Promise
+        let countValue = new Promise(function (resolve, reject) {
+            //Trả về kết quả của Promise là thành công
+            resolve('Xử lý bất đồng bộ thành công');
+            //Trả về kết quả của Promise là thất bại
+            // reject('Xử lý thất bại');
+        })
+        //Sử dụng phương thức then() khi kết quả Promise là thành công
+        countValue.then(function successValue(result){
+            console.log(result);
+        });
+        countValue.then(function successValue1(){
+            console.log('Xâu chuỗi Promise');
+        })
+        //Sử dụng phương thức catch() khi kết quả Promise là thất bại
+        countValue.catch(function successValue2(result){
+            console.log(result);
+        })
+    </script>
+</body>
+
+</html>

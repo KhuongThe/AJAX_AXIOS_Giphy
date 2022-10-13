@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Khai báo hàm xử lý chính
+        function greet(name, callback) {
+            console.log('Hi' + ' ' + name);
+            callback();
+        }
+        //Khai báo hàm Callback
+        function callMe() {
+            console.log('I am callback function');
+        }
+        //Gọi hàm Xử lý chính
+        greet('BiBop',callMe);
+    </script>
+</body>
+
+</html>

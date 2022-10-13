@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Axios Demo</title>
+</head>
+
+<body>
+    <script>
+        // let API_KEY = "b1tcE7pK1JFX0gTMxBmJEdtcZRc8xULj";
+        // let keyword = 'teeth';
+        // const getImage = (keyword) => {
+        //     axios.get('http://api.giphy.com/v1/gifs/search', { params: { q: keyword, api_key: API_KEY } })
+        //         .then(res => { console.log(res.data.data[0].images.preview_gif.url); })
+        //         .catch(error => console.log(error))
+        // }
+        // getImage('Nam');
+
+        axios.get('http://api.giphy.com/v1/gifs/search?q=hilarious&api_key=4NNaEAvCGjNy7E1BwFtzoI6t84PiTPLY')
+        .then(response => {
+            console.log(response);
+            console.log(response.data.data[0]);
+            console.log(response.data.data[0].images.preview_gif.url);
+        })
+    </script>
+</body>
+
+</html>

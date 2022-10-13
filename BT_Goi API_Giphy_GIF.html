@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="content">
+        
+            <input type="text" placeholder="Enter keyword" id="search">
+            <input type="number" placeholder="Enter number image" id="number">
+            <input type="submit" value="Search" id="submit">
+            <input type="submit" name="" id="button" value="Delete">
+        
+    </div>
+    <div id="img">
+       <!-- <img width="150px" height="150px" src="" alt=""> -->
+    </div>
+    <script>
+        let arrImage = [];
+        let API_KEY = "4NNaEAvCGjNy7E1BwFtzoI6t84PiTPLY";
+        let keysearch = document.getElementById("search");
+        let numsearch = document.getElementById("number");
+        let submit = document.getElementById("submit");
+        let button = document.getElementById("button");
+        let result = document.getElementById("img");
+        function getImage(keyword, number) {
+            axios.get('http://api.giphy.com/v1/gifs/search', {
+                params: {
+                    q: keyword,
+                    api_key: API_KEY
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    let arr_getImage = response.data.data;
+                    for (let i = 0; i < number; i++) {
+                        arrImage.push(arr_getImage[i].images.preview_gif.url);
+                    }
+                    printImage();
+                })
+
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
+        function printImage() {
+            let html = "";
+            for (let i = 0; i < arrImage.length; i++) {
+                html += '<img width="150px" height="150px" src="' + arrImage[i] + '" alt="">'
+            }
+            result.innerHTML = html;
+        }
+        submit.addEventListener('click', () => {
+            let key = keysearch.value;
+            let num = numsearch.value;
+            getImage(key, num);
+        })
+        button.addEventListener('click', () => {
+            let html = "";
+            result.innerHTML = html;
+            arrImage = [];
+        })
+    </script>
+</body>
+
+</html>
