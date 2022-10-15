@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Axios Demo</title>
+</head>
+
+<body>
+    <div>
+        <input type="text" name="" id="city" placeholder="Nhập địa điểm">
+        <input type="text" name="" id="lat" placeholder="Nhập Lat">
+        <input type="text" name="" id="lon" placeholder="Nhập Lon">
+        <select name="" id="exclude">
+            <option value="current">-----------------</option>
+            <option value="current">current</option>
+            <option value="minutely">minutely</option>
+            <option value="hourly">hourly</option>
+            <option value="daily">daily</option>
+            <option value="alerts">alerts</option>
+        </select>
+        <input type="submit" value="Call" id="call">
+    </div>
+    <div id="content">
+        <p>Địa điểm: </p>
+        <br>
+        <p>Nhiệt độ:</p>
+        <br>
+        <p>Hình thái:</p>
+        <br>
+        <p>Thời tiết:</p>
+    </div>
+    <script>
+        let cityname_input = document.getElementById('city');
+        // let keylat_input = document.getElementById('lat');
+        // let keylon_input = document.getElementById('lon');
+        // let keyexclude_input = document.getElementById('exclude');
+        let submit = document.getElementById('call');
+        let API_KEY = "4803f647754a38bb4cfe9da81a7ee335";
+        let content = document.getElementById('content');
+        function getOpenWeather(cityname) {
+            // https://api.openweathermap.org/data/2.5/weather?q={cityname}&appid={APIkey}
+            axios.get('https://api.openweathermap.org/data/2.5/weather', {
+                params: {
+                    q: cityname,
+                    appid: API_KEY,
+                    units: "metric",
+                    lang: "vi"
+                }
+            })
+                // axios.get('https://api.openweathermap.org/data/3.0/onecall', {
+                //     params:{
+                //         lat: keylat,
+                //         lon: keylon,
+                //         exclude: keyexclude,
+                //         appid: API_KEY
+                //     }
+                // })
+                .then((response) => {
+                    console.log(response);
+                    console.log(response.data);
+                    console.log(response.data.weather);
+                    let temp = response.data.main.temp;
+                    let weather = response.data.weather[0].main;
+                    let description = response.data.weather[0].description;
+                    content.innerHTML = `
+                    <p>Địa điểm: ${cityname_input.value}</p>
+                    <br>
+                    <p>Nhiệt độ: ${temp}</p>
+                    <br>
+                    <p>Hình thái: ${weather}</p>
+                    <br>
+                    <p>Thời tiết: ${description}</p>`;
+                    console.log(temp, weather, description);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
+        submit.addEventListener('click', () => {
+            let city = cityname_input.value;
+            // let lat = keylat_input.value;
+            // let lon = keylon_input.value;
+            // let exclude = keyexclude_input.value;
+            getOpenWeather(city);
+        })
+
+    </script>
+</body>
+
+</html>
